@@ -1,0 +1,31 @@
+﻿.button-whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+}
+
+@media screen and (max-width: 420px) {
+    .button-whatsapp img {
+        width: 48px;
+        height: auto;
+    }
+}
+
+.wrapper-apps {
+    margin-top: 40px;
+}
+.wrapper-apps p {
+    color: #fff;
+    font-weight: normal;
+}
+.wrapper-apps .icons {
+    margin-top: 30px;
+}
+.wrapper-apps .icons a {
+    margin-right: 30px;
+}
+
+main#blog section.postList article header {
+    background-size: cover;
+    background-position: center center;
+}

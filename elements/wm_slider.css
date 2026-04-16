@@ -1,0 +1,24 @@
+﻿*:is([unselectable], [unselectable="true"]){
+	
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	
+}
+
+*:is([unselectable], [unselectable="true"]) :is(img, a){
+	
+	pointer-events: none;
+	
+}
+
+wm-slider{display: flex; flex-direction: column; row-gap: 20px; overflow: hidden; --row-count: 1;}
+wm-slider wm-slider-controls{display: flex; justify-content: space-between; align-items: center;}
+wm-slider wm-slider-controls wm-slider-trigger{display: block; cursor: pointer; font-size: 3em;}
+wm-slider wm-slider-mat{display: flex; transition: transform .5s ease;}
+wm-slider:is([grabbable], [grabbable="true"]) wm-slider-mat{cursor: grab;}
+wm-slider:--grabbing wm-slider-mat{cursor: grabbing; transition: initial;}
+wm-slider wm-slider-mat wm-slider-row{display: block; flex: 0 0 calc(100%/var(--row-count));}
