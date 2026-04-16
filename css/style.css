@@ -47,10 +47,10 @@ mark::selection{background-color: #fff; color: var(--main-color);}
 
 input[type="text"], select, textarea{border: 0; padding: 10px 20px; font-family: inherit; background-color: var(--main-color); color: #fff; font-size: 1.25rem; appearance: none;}
 input[type="text"]::placeholder, select::placeholder, textarea::placeholder{color: #fff;}
-input[type="checkbox"]{display: none;}
-input[type="checkbox"] + label{border-radius: 2px; display: flex; margin: 0; appearance: none; width: 15px; height: 15px; border: 2px solid var(--accent-color); align-items: center; justify-content: center;}
-input[type="checkbox"]:checked + label{background-color: var(--main-color); border-color: var(--main-color);}
-input[type="checkbox"]:checked + label:before{content: '\2713'; color: #fff;}
+form input[type="checkbox"]{display: none;}
+form input[type="checkbox"] + label{border-radius: 2px; display: flex; margin: 0; appearance: none; width: 15px; height: 15px; border: 2px solid var(--accent-color); align-items: center; justify-content: center;}
+form input[type="checkbox"]:checked + label{background-color: var(--main-color); border-color: var(--main-color);}
+form input[type="checkbox"]:checked + label:before{content: '\2713'; color: #fff;}
 textarea{height: clamp(120px, 120px, 120px);}
 
 /* Helper Classes */
@@ -367,14 +367,81 @@ header#mainHeader .side #closeWord:before{content: 'Fechar'; position: relative;
 
 header#fixedHeader{position: fixed; top: 0; left: 0; right: 0; z-index: 11; box-shadow: 0 -5px 10px 10px rgb(0 0 0 / 50%);}
 header#fixedHeader .content{flex-direction: row; justify-content: space-between; color: #fff; align-items: flex-end; padding: 20px clamp(5vw, calc((100vw - 1200px)/2), 100%); background-color: var(--accent-color); width: 100%; max-width: initial;}
-header#fixedHeader nav{display: flex; gap: 20px;}
+header#fixedHeader nav{display: flex; flex-wrap: nowrap; align-items: center; gap: 20px;}
+header#fixedHeader nav > a,
+header#fixedHeader nav > .contatoMenu,
+header#fixedHeader nav > .searchTrigger{flex: 0 0 auto;}
 header#fixedHeader nav .active{pointer-events: none; color: var(--main-color);}
-header#fixedHeader nav label{cursor: pointer; position: relative;}
-header#fixedHeader nav label:after{content: ''; position: absolute; bottom: -20px; left: 0; right: 0; height: 10px; background-color: var(--main-color); transition: all .5s ease, opacity 0s linear; opacity: 0; transform: tranlsateY(100%);}
-header#fixedHeader nav input:checked + label:after{transition: all .5s ease .5s, opacity 0s linear .5s; opacity: 1; transform: tranlsateY(0);}
-header#fixedHeader nav.dropdown{position: absolute; bottom: 0; left: 0; right: 0; background-color: var(--main-color); padding: 5px clamp(5vw, calc((100vw - 1200px)/2), 100%); z-index: -1; transition: all .5s ease; color: var(--accent-color); justify-content: flex-end; font-weight: bold;}
-header#fixedHeader input:checked + nav.dropdown{transform: translateY(100%); box-shadow: inherit;}
-header#fixedHeader nav.dropdown a.active{color: #fff; font-weight: 900;}
+header#fixedHeader details.contatoMenu {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  align-self: center;
+}
+header#fixedHeader details.contatoMenu summary {
+  list-style: none;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1.25;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.25em;
+}
+header#fixedHeader details.contatoMenu summary::-webkit-details-marker {
+  display: none;
+}
+header#fixedHeader details.contatoMenu summary::marker {
+  content: none;
+}
+header#fixedHeader > .dropdown{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 12px clamp(5vw, calc((100vw - 1200px) / 2), 100%);
+	box-sizing: border-box;
+	background-color: var(--main-color);
+	z-index: -1;
+	transition: transform .5s ease, box-shadow .5s ease;
+	color: var(--accent-color);
+	font-weight: bold;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: flex-end;
+	gap: 0.35rem;
+}
+header#fixedHeader > .dropdown::before{
+	content: '';
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	right: 0;
+	height: 12px;
+}
+header#fixedHeader:has(details.contatoMenu:hover) > .dropdown,
+header#fixedHeader:has(details.contatoMenu[open]) > .dropdown,
+header#fixedHeader:has(details.contatoMenu:focus-within) > .dropdown,
+header#fixedHeader > .dropdown:hover{
+	transform: translateY(100%);
+	box-shadow: inherit;
+}
+header#fixedHeader > .dropdown a{
+	display: block;
+	text-align: right;
+	padding: 0.2em 0;
+	white-space: nowrap;
+}
+header#fixedHeader > .dropdown a.active{color: #fff; font-weight: 900;}
+header#fixedHeader .searchTrigger{
+	flex: 0 0 auto;
+	margin-left: 12px;
+}
 
 body.resolv header#fixedHeader{transform: translateY(calc(-100% - 30px)); transition: all .5s ease;}
 body.showMenu header#fixedHeader{transform: initial;}
