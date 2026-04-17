@@ -67,6 +67,18 @@ section.green-bg mark:before{background-color: #fff;}
 section :is(h1, h2, h3, h4, h5, h6, p){opacity: 0; transform: translateY(50px); transition: all .5s ease;}
 section.animate :is(h1, h2, h3, h4, h5, h6, p){opacity: 1; transform: initial;}
 
+wm-slider#banner section.info :is(h1, h2, h3, h4, h5, h6, p){
+	opacity: 1;
+	transform: none;
+}
+wm-slider#banner section.info mark:before{
+	right: 0;
+	transition: none;
+}
+wm-slider#banner section.info :is(mark, mark span){
+	color: #fff !important;
+}
+
 section mark:before{right: 100%; transition: all .5s ease .5s;}
 section mark span{transition: all .5s ease .5s;}
 section.animate mark:before{right: 0;}
@@ -281,7 +293,11 @@ body:is(.blog-inner, .resultado, .policies) header#mainHeader{background-color: 
 	/* Contact Template */
 
 main.contactTemplate section#banner h1{text-align: left;}
-main.contactTemplate section#info p{max-width: 825px; margin: auto;}
+main.contactTemplate section#info .content{text-align: center;}
+main.contactTemplate section#info p{max-width: 825px; margin-left: auto; margin-right: auto;}
+main.contactTemplate section#info .content p + p{margin-top: 1em;}
+main.contactTemplate section#info .content a.whatsapp-text-link{color: var(--main-color); font-weight: 900; text-decoration: underline;}
+main.contactTemplate section#info .content a.whatsapp-text-link:hover{opacity: 0.85;}
 main.contactTemplate section#newsForms{background-color: var(--accent-color);}
 main.contactTemplate section#newsForms form{margin-top: 0; padding: 0;}
 
@@ -367,29 +383,28 @@ header#mainHeader .side #closeWord:before{content: 'Fechar'; position: relative;
 
 header#fixedHeader{position: fixed; top: 0; left: 0; right: 0; z-index: 11; box-shadow: 0 -5px 10px 10px rgb(0 0 0 / 50%);}
 header#fixedHeader .content{flex-direction: row; justify-content: space-between; color: #fff; align-items: flex-end; padding: 20px clamp(5vw, calc((100vw - 1200px)/2), 100%); background-color: var(--accent-color); width: 100%; max-width: initial;}
-header#fixedHeader nav{display: flex; flex-wrap: nowrap; align-items: center; gap: 20px;}
+header#fixedHeader nav{display: flex; flex-wrap: nowrap; align-items: baseline; gap: 20px;}
 header#fixedHeader nav > a,
-header#fixedHeader nav > .contatoMenu,
 header#fixedHeader nav > .searchTrigger{flex: 0 0 auto;}
 header#fixedHeader nav .active{pointer-events: none; color: var(--main-color);}
-header#fixedHeader details.contatoMenu {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0;
-  border: 0;
-  padding: 0;
-  align-self: center;
+header#fixedHeader details.contatoMenu{
+	position: relative;
+	margin: 0;
+	border: 0;
+	padding: 0;
+	display: contents;
 }
-header#fixedHeader details.contatoMenu summary {
-  list-style: none;
-  cursor: pointer;
-  white-space: nowrap;
-  line-height: 1.25;
-  font-weight: bold;
-  display: inline-flex;
-  align-items: center;
-  min-height: 1.25em;
+header#fixedHeader details.contatoMenu summary{
+	list-style: none;
+	cursor: pointer;
+	white-space: nowrap;
+	font-weight: bold;
+	font-size: inherit;
+	line-height: inherit;
+	padding: 0;
+	margin: 0;
+	display: block;
+	flex: 0 0 auto;
 }
 header#fixedHeader details.contatoMenu summary::-webkit-details-marker {
   display: none;
@@ -441,6 +456,7 @@ header#fixedHeader > .dropdown a.active{color: #fff; font-weight: 900;}
 header#fixedHeader .searchTrigger{
 	flex: 0 0 auto;
 	margin-left: 12px;
+	align-self: center;
 }
 
 body.resolv header#fixedHeader{transform: translateY(calc(-100% - 30px)); transition: all .5s ease;}
@@ -496,10 +512,36 @@ section#results.animate .arrow{transform: translateX(calc((100vw/1920)*(-49))) r
 
 section#benefits{padding: 100px 0 250px;}
 section#benefits .text{width: fit-content; margin-left: auto;}
-section#benefits .text p:nth-child(1){text-indent: 4em;}
-section#benefits .text p:nth-child(2){text-indent: 3em;}
-section#benefits .text p:nth-child(3){text-indent: 2em;}
-section#benefits .text p:nth-child(4){text-indent: 1em;}
+section#benefits .text ul.home-benefits-list{
+	list-style: disc;
+	list-style-position: outside;
+	margin: 0;
+	padding-left: 1.75em;
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	max-width: 52rem;
+	text-align: left;
+	font-size: 1.25rem;
+	font-weight: bold;
+	line-height: 2.188rem;
+	color: var(--accent-color);
+}
+section#benefits .text ul.home-benefits-list li{
+	margin: 0;
+	padding-left: 0.35em;
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	color: inherit;
+	opacity: 0;
+	transform: translateY(50px);
+	transition: all .5s ease;
+}
+section#benefits.animate .text ul.home-benefits-list li{
+	opacity: 1;
+	transform: initial;
+}
 
 /* Sided Text */
 
@@ -597,6 +639,10 @@ section#facilitate .content p{width: 85%; margin: auto;text-align: center}
 main#quemSomos section#flexing{align-items: center;}
 main#quemSomos section#flexing .img:before{padding-bottom: 214px; top: 50%; right: -132px; transform: translateY(-50%);}
 main#quemSomos section#flexing .side{padding-top: 0;}
+main#quemSomos section#flexing .side{font-size: 1.25rem;}
+main#quemSomos section#flexing .side p,
+main#quemSomos section#flexing .side p :is(mark, span){font-size: 1em; line-height: 1.35;}
+main#quemSomos section:nth-child(2) .content > p strong{font-weight: 900;}
 
 	/* Sided Text */
 
@@ -610,6 +656,7 @@ section#quote{padding-top: 200px;}
 section#quote h3{text-align: center;}
 section#quote .content{gap: 100px;}
 section#quote .content p{width: 85%; margin: auto;}
+main#quemSomos section#quote .content p{text-align: center;}
 
 	/* Solutions */
 
@@ -620,6 +667,18 @@ section#solutions .articleHolder article{flex: 0 1 440px; aspect-ratio: 440/550;
 section#solutions .articleHolder article h5{font-size: 2.375rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 900; padding: 10px 100px 10px 30px; width: fit-content; margin-left: -15px; background-color: var(--main-color);}
 section#solutions .articleHolder article:nth-child(2n) h5{margin-right: -15px; margin-left: auto; padding: 10px 30px 10px 100px;}
 section#solutions .articleHolder article a.knowMore{opacity: 1; display: block; width: fit-content; margin-left: auto; margin-right: 50px;}
+main#quemSomos section#solutions .articleHolder article a.knowMore{
+	font-weight: 700;
+	transition: transform .2s ease, opacity .2s ease;
+	transform-origin: center;
+}
+main#quemSomos section#solutions .articleHolder article a.knowMore:hover{
+	animation: none;
+	transform: scale(1.06);
+}
+main#quemSomos section#solutions .articleHolder article a.knowMore:hover span{
+	animation: none;
+}
 
 section#solutions.animate .articleHolder{opacity: 1; transform: initial;}
 
@@ -960,6 +1019,7 @@ main#workWithUs section#newsForms .formGroup label[for="cv"] p mark{font-weight:
 	section#benefits{position: relative; z-index: 10; padding: 50px 0;}
 	section#benefits .text{margin: auto; text-align: center;}
 	section#benefits .text p{text-indent: 0 !important;}
+	section#benefits .text ul.home-benefits-list{margin-left: auto; margin-right: auto;}
 
 	section.sidedText{padding: 50px 0;}
 	section.sidedText .side{width: 100%; text-align: center;}
@@ -996,8 +1056,7 @@ main#workWithUs section#newsForms .formGroup label[for="cv"] p mark{font-weight:
 	main.contactTemplate section#banner{margin-bottom: 0;}
 	main.contactTemplate section#contactOptions .content{grid-template-columns: 1fr 1fr;}
 
-	footer#mainFooter .content{display: grid; grid-template-areas: "logo iso" "info info";}
-	footer#mainFooter .content > img{grid-area: iso; margin-left: auto;}
+	footer#mainFooter .content{display: grid; grid-template-areas: "logo" "info"; justify-items: center;}
 	footer#mainFooter .logo{width: fit-content;}
 	footer#mainFooter .info{text-align: center; grid-area: info;}
 	footer#mainFooter .info .links{justify-content: center;}
@@ -1092,6 +1151,7 @@ main#workWithUs section#newsForms .formGroup label[for="cv"] p mark{font-weight:
 	section#care p{width: 100%;}
 
 	main#quemSomos section#flexing .img:before{right: 50%; transform: translateX(50%); top: calc(100% + -60px);}
+	main#quemSomos section#flexing .side{font-size: 1.3rem;}
 
 	section#solutions .articleHolder article{margin: 0 15px;}
 	section#solutions .articleHolder article:nth-child(n) h5{padding: 10px 0; width: calc(100% + 30px); margin: 0 -15px; text-align: center;}
@@ -1130,9 +1190,9 @@ main#workWithUs section#newsForms .formGroup label[for="cv"] p mark{font-weight:
 	main.contactTemplate section#contactOptions .content{grid-template-columns: 1fr;}
 	main.contactTemplate section#banner h1{font-size: 2rem; line-height: 3rem;}
 
-	footer#mainFooter .content{grid-template-areas: "logo" "info" "iso"; justify-content: center;}
+	footer#mainFooter .content{grid-template-areas: "logo" "info"; justify-content: center;}
 	footer#mainFooter .logo{margin: auto;}
-	footer#mainFooter img{margin: auto;}
+	footer#mainFooter .logo img{margin: auto;}
 
 	#pageErro{background: #475c6d;}
 	.pageErroContent{flex-direction: column;}
