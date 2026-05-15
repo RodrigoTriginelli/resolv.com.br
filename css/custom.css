@@ -1,4 +1,19 @@
-﻿.button-whatsapp {
+﻿/* Se não houver JavaScript, ainda mostra títulos e textos (evita página “vazia”) */
+@media (scripting: none) {
+	section :is(h1, h2, h3, h4, h5, h6, p) {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+/* Fallback quando imagens do banner não carregam (ex.: arquivo aberto via file://) — evita texto branco em fundo branco */
+wm-slider#banner wm-slider-row {
+    background-color: var(--accent-color);
+    background-size: cover;
+    background-position: center;
+}
+
+.button-whatsapp {
     position: fixed;
     bottom: 20px;
     right: 30px;

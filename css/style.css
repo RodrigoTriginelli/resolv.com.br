@@ -394,6 +394,14 @@ header#fixedHeader details.contatoMenu{
 	padding: 0;
 	display: contents;
 }
+header#fixedHeader details.segurancaMenu{
+	position: relative;
+	margin: 0;
+	border: 0;
+	padding: 0;
+	display: block;
+	align-self: baseline;
+}
 header#fixedHeader details.contatoMenu summary{
 	list-style: none;
 	cursor: pointer;
@@ -406,13 +414,30 @@ header#fixedHeader details.contatoMenu summary{
 	display: block;
 	flex: 0 0 auto;
 }
+header#fixedHeader details.segurancaMenu summary{
+	list-style: none;
+	cursor: pointer;
+	white-space: nowrap;
+	font-weight: bold;
+	font-size: inherit;
+	line-height: inherit;
+	padding: 0;
+	margin: 0;
+	display: block;
+}
 header#fixedHeader details.contatoMenu summary::-webkit-details-marker {
+  display: none;
+}
+header#fixedHeader details.segurancaMenu summary::-webkit-details-marker {
   display: none;
 }
 header#fixedHeader details.contatoMenu summary::marker {
   content: none;
 }
-header#fixedHeader > .dropdown{
+header#fixedHeader details.segurancaMenu summary::marker {
+  content: none;
+}
+header#fixedHeader > .dropdown.contatoDropdown{
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -431,7 +456,28 @@ header#fixedHeader > .dropdown{
 	align-items: flex-end;
 	gap: 0.35rem;
 }
-header#fixedHeader > .dropdown::before{
+header#fixedHeader > .dropdown.segurancaDropdown{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 12px clamp(5vw, calc((100vw - 1200px) / 2), 100%);
+	padding-left: var(--seguranca-submenu-left, clamp(5vw, calc((100vw - 1200px) / 2), 100%));
+	box-sizing: border-box;
+	background-color: var(--main-color);
+	z-index: -1;
+	transition: transform .5s ease, box-shadow .5s ease;
+	color: var(--accent-color);
+	font-weight: bold;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 0.35rem;
+}
+header#fixedHeader > .dropdown.contatoDropdown::before,
+header#fixedHeader > .dropdown.segurancaDropdown::before{
 	content: '';
 	position: absolute;
 	bottom: 100%;
@@ -439,20 +485,31 @@ header#fixedHeader > .dropdown::before{
 	right: 0;
 	height: 12px;
 }
-header#fixedHeader:has(details.contatoMenu:hover) > .dropdown,
-header#fixedHeader:has(details.contatoMenu[open]) > .dropdown,
-header#fixedHeader:has(details.contatoMenu:focus-within) > .dropdown,
-header#fixedHeader > .dropdown:hover{
+header#fixedHeader:has(details.contatoMenu:hover) > .dropdown.contatoDropdown,
+header#fixedHeader:has(details.contatoMenu[open]) > .dropdown.contatoDropdown,
+header#fixedHeader:has(details.contatoMenu:focus-within) > .dropdown.contatoDropdown,
+header#fixedHeader > .dropdown.contatoDropdown:hover,
+header#fixedHeader:has(details.segurancaMenu:hover) > .dropdown.segurancaDropdown,
+header#fixedHeader:has(details.segurancaMenu[open]) > .dropdown.segurancaDropdown,
+header#fixedHeader:has(details.segurancaMenu:focus-within) > .dropdown.segurancaDropdown,
+header#fixedHeader > .dropdown.segurancaDropdown:hover{
 	transform: translateY(100%);
 	box-shadow: inherit;
 }
-header#fixedHeader > .dropdown a{
+header#fixedHeader > .dropdown.contatoDropdown a{
 	display: block;
 	text-align: right;
 	padding: 0.2em 0;
 	white-space: nowrap;
 }
-header#fixedHeader > .dropdown a.active{color: #fff; font-weight: 900;}
+header#fixedHeader > .dropdown.segurancaDropdown a{
+	display: block;
+	text-align: left;
+	padding: 0.2em 0;
+	white-space: nowrap;
+}
+header#fixedHeader > .dropdown.contatoDropdown a.active,
+header#fixedHeader > .dropdown.segurancaDropdown a.active{color: #fff; font-weight: 900;}
 header#fixedHeader .searchTrigger{
 	flex: 0 0 auto;
 	margin-left: 12px;

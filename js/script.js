@@ -1,5 +1,14 @@
 // Ready
 
+/** Alinha o submenu de Segurança à coluna do item (padding esquerdo = posição do <details>). */
+function alignSegurancaDropdown() {
+	var header = document.querySelector('header#fixedHeader');
+	var trigger = document.querySelector('header#fixedHeader details.segurancaMenu');
+	if (!header || !trigger) return;
+	var left = Math.round(trigger.getBoundingClientRect().left);
+	header.style.setProperty('--seguranca-submenu-left', Math.max(0, left) + 'px');
+}
+
 $(document).ready(function(){
 
 	//############## GET PROJECT
@@ -7,6 +16,8 @@ $(document).ready(function(){
 
 	setUp();
 	sectionAnimation();
+	alignSegurancaDropdown();
+	setTimeout(alignSegurancaDropdown, 150);
 
 	//############## MASK INPUT
 	if ($('.formPhone').length) {
@@ -27,6 +38,9 @@ $(document).ready(function(){
 	insertCookieDialog();
 
 });
+
+$(window).on('resize', alignSegurancaDropdown);
+$(window).on('load', alignSegurancaDropdown);
 
 // Load More Button
 
@@ -183,14 +197,26 @@ function setUp(){
 
 function sectionAnimation(){
 
-	var scroll = $(document).scrollTop() + $(window).innerHeight()/2;
+	try {
 
-	$.each($('section:not(.animate)'), function(){
+		var scroll = $(document).scrollTop() + $(window).innerHeight()/2;
 
-		var top = $(this).offset().top;
-		if(scroll > top) $(this).addClass('animate');
+		$.each($('section:not(.animate)'), function(){
 
-	});
+			var $el = $(this);
+			if (!$el.length) return;
+			var top = $el.offset().top;
+			if (typeof top !== 'number') return;
+			if(scroll > top) $el.addClass('animate');
+
+		});
+
+	} catch (e) {
+
+		console.error('sectionAnimation', e);
+		$('section:not(.animate)').addClass('animate');
+
+	}
 
 }
 

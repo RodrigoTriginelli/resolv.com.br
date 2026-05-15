@@ -53,7 +53,14 @@
         <a class="active" href="/">Home</a>
         <a href="/quem-somos">Quem Somos</a>
         <a href="/facilities">Facilities</a>
-        <a href="/seguranca">Segurança</a>
+        <section>
+            <label for="segurancaNavTrigger">Segurança</label>
+            <input type="checkbox" id="segurancaNavTrigger">
+            <nav style="--sub-links: 2;">
+                <a href="/seguranca">Segurança</a>
+                <a href="/seguranca/resolvigia">ResolVigia</a>
+            </nav>
+        </section>
         <a href="/alimentacao">Alimentação</a>
         <a href="/hospitalar">Hospitalar</a>
         <a href="/esg">Sustentabilidade</a>
@@ -101,7 +108,9 @@
             <a  href="/">Home</a>
             <a  href="/quem-somos">Quem Somos</a>
             <a  href="/facilities">Facilities</a>
-            <a  href="/seguranca">Segurança</a>
+            <details class="segurancaMenu">
+            <summary>Segurança</summary>
+            </details>
             <a  href="/alimentacao">Alimentação</a>
             <a  href="/hospitalar">Hospitalar</a>
             <a  href="/esg">Sustentabilidade</a>
@@ -113,8 +122,12 @@
         </nav>
     </div>
 
-    <div class="dropdown">
+    <div class="dropdown segurancaDropdown">
+        <a href="/seguranca">Segurança</a>
+        <a href="/seguranca/resolvigia">ResolVigia</a>
+    </div>
 
+    <div class="dropdown contatoDropdown">
         <a class="active" href="/contato/comercial">Contato Comercial</a>
         <a  href="/contato/atendimento-ao-cliente">Atendimento ao Cliente</a>
         <a  href="/contato/atendimento-ao-funcionario">Atendimento ao Funcionário</a>
